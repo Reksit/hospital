@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { 
   Activity, 
-  Bed, 
+  Bed as BedIcon, 
   Users, 
   Truck, 
   AlertTriangle, 
@@ -103,7 +103,7 @@ export function AdminDashboard() {
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="p-3 bg-blue-100 rounded-lg">
-              <Bed className="h-6 w-6 text-blue-600" />
+              <BedIcon className="h-6 w-6 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Beds</p>
