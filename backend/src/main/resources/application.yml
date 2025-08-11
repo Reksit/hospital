@@ -1,0 +1,78 @@
+spring:
+  application:
+    name: carefleet-backend
+  
+  profiles:
+    active: dev
+  
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/carefleet
+      auto-index-creation: true
+  
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+  
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+jwt:
+  secret: ${JWT_SECRET:carefleet-super-secret-key-change-in-production}
+  expiration: 86400000 # 24 hours
+  refresh-expiration: 604800000 # 7 days
+
+google:
+  maps:
+    api-key: ${GOOGLE_MAPS_API_KEY:}
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+logging:
+  level:
+    com.carefleet: DEBUG
+    org.springframework.security: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  data:
+    mongodb:
+      uri: mongodb://mongodb:27017/carefleet
+    redis:
+      host: redis
+      port: 6379
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/carefleet_test
